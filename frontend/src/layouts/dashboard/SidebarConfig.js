@@ -38,7 +38,12 @@ const sidebarConfig = [
   },
   {
     title: 'add student',
-    path: '/addStudent',
+    path: '/dashboard/addStudent',
+    icon: getIcon('eva:person-add-fill')
+  },
+  {
+    title: 'add marksheet',
+    path: '/dashboard/addMarksheet',
     icon: getIcon('eva:person-add-fill')
   },
   {

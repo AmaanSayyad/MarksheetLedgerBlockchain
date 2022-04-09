@@ -37,6 +37,11 @@ const sidebarConfig = [
     icon: getIcon('eva:person-add-fill')
   },
   {
+    title: 'add student',
+    path: '/addStudent',
+    icon: getIcon('eva:person-add-fill')
+  },
+  {
     title: 'Not found',
     path: '/404',
     icon: getIcon('eva:alert-triangle-fill')

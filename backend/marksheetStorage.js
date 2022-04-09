@@ -25,8 +25,8 @@ async function initContract() {
     MarksheetStorage.abi,
     deployedNetwork && deployedNetwork.address,
   )
-
-  getStudentName(instance)
+  return instance
+  // getStudentName(instance)
 }
 
 // Read the 'name' stored in the HelloWorld.sol contract
@@ -54,4 +54,7 @@ async function addStudent(instance, newName) {
   console.log(receipt)
 }
 
-initContract()
+// initContract()
+
+
+module.exports = initContract

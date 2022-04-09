@@ -1,3 +1,4 @@
+
 import * as Yup from 'yup';
 import { useState } from 'react';
 import { useFormik, Form, FormikProvider } from 'formik';
@@ -10,7 +11,7 @@ import Iconify from '../../../components/Iconify';
 
 // ----------------------------------------------------------------------
 
-export default function AddStudentForm() {
+export default function AddMarksheetForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -26,6 +27,8 @@ export default function AddStudentForm() {
     lastName: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Last name required'),
     email: Yup.string().email('Email must be a valid email address').required('Email is required'),
     studentID: Yup.string().required('Student ID is required'),
+    marksheetTitle: Yup.string().required('Marksheet title is required'),
+    totalSub: Yup.string().required('Total subjects is required'),
     password: Yup.string().required('Password is required')
   });
 
@@ -35,6 +38,8 @@ export default function AddStudentForm() {
       firstName: '',
       lastName: '',
       studentID:'',
+      marksheetTitle:'',
+      totalSub:'',
       email: '',
       password: ''
     },
@@ -50,23 +55,6 @@ export default function AddStudentForm() {
     <FormikProvider value={formik}>
       <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
         <Stack spacing={3}>
-          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
-            <TextField
-              fullWidth
-              label="Name"
-              {...getFieldProps('name')}
-              error={Boolean(touched.name && errors.name)}
-              helperText={touched.name && errors.name}
-            />
-
-            {/* <TextField
-              fullWidth
-              label="Last name"
-              {...getFieldProps('lastName')}
-              error={Boolean(touched.lastName && errors.lastName)}
-              helperText={touched.lastName && errors.lastName}
-            /> */}
-          </Stack>
  
        <TextField
             fullWidth
@@ -77,36 +65,21 @@ export default function AddStudentForm() {
             error={Boolean(touched.studentID && errors.studentID)}
             helperText={touched.studentID && errors.studentID}
           />
-
-         {/* <TextField
-            fullWidth
-            autoComplete="username"
-            type="email"
-            label="Email address"
-            {...getFieldProps('email')}
-            error={Boolean(touched.email && errors.email)}
-            helperText={touched.email && errors.email}
-          /> */}
-
-          {/* <TextField
-            fullWidth
-            autoComplete="current-password"
-            type={showPassword ? 'text' : 'password'}
-            label="Password"
-            {...getFieldProps('password')}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton edge="end" onClick={() => setShowPassword((prev) => !prev)}>
-                    <Iconify icon={showPassword ? 'eva:eye-fill' : 'eva:eye-off-fill'} />
-                  </IconButton>
-                </InputAdornment>
-              )
-            }}
-            error={Boolean(touched.password && errors.password)}
-            helperText={touched.password && errors.password}
-          /> */}
-
+           <TextField
+              fullWidth
+              label="Marksheet title"
+              {...getFieldProps('marksheetTitle')}
+              error={Boolean(touched.marksheetTitle && errors.marksheetTitle)}
+              helperText={touched.marksheetTitle && errors.marksheetTitle}
+            />
+           <TextField
+              fullWidth
+              label="Total Subjects"
+              type="number"
+              {...getFieldProps('totalSub')}
+              error={Boolean(touched.totalSub && errors.totalSub)}
+              helperText={touched.totalSub && errors.totalSub}
+            />
           <LoadingButton
             fullWidth
             size="large"
@@ -114,7 +87,7 @@ export default function AddStudentForm() {
             variant="contained"
             loading={isSubmitting}
           >
-            Add Student
+            Add Marksheet
           </LoadingButton>
         </Stack>
       </Form>

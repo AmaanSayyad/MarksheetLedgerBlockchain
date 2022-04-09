@@ -1,5 +1,8 @@
+var Web3 = require("web3")
+
 function contractConnection() {
-  web3 = new Web3(web3.currentProvider)
+  console.log("I'm here")
+  var web3 = new Web3(Web3.currentProvider)
 
   var address = '0x02378715D4Ea2f103810c0dDB44695E557EBc356'
   var abi = [
@@ -168,6 +171,8 @@ function contractConnection() {
   ]
 
   contract = new web3.eth.Contract(abi, address)
+  console.log(contract)
   return contract
 }
 
+module.exports = contractConnection

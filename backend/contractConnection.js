@@ -171,8 +171,12 @@ async function contractConnection() {
       type: 'function',
     },
   ]
-  contract = new web3.eth.Contract(abi, address)
-  return contract
+  web3.eth.requestAccounts().then(console.log)
+  const accounts = await web3.eth.getAccounts().then((accounts) => {
+    console.log(accounts)
+    contract = new web3.eth.Contract(abi, address)
+    return contract
+  })
 }
 
 module.exports = contractConnection

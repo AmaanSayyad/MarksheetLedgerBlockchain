@@ -9,13 +9,14 @@ var instance = null
 
 app.post('/getStudentName', async function (req, res) {
   console.log('Get student name  is called', req.body)
-  let name = await instance.methods.getStudentName(req.body.studentID).call()
-  console.log(name)
+  let studentName = await instance.methods
+    .getStudentName(req.body.studentID)
+    .call()
+  console.log(studentName)
   res.send({
-    name: name,
+    studentName: studentName,
   })
 })
-
 
 var server = app.listen(8081, async function () {
   var host = server.address().address

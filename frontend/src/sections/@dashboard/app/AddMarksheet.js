@@ -36,15 +36,15 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 const TOTAL = 1352831;
 
-export default function AppNewUsers() {
+export default function AddMarksheet() {
   return (
     <RootStyle>
       <IconWrapperStyle>
-        <Iconify icon="ant-design:apple-filled" width={24} height={24} />
+        <Iconify icon="fluent:add-12-filled" width={24} height={24} />
       </IconWrapperStyle>
-      <Typography variant="h3">{fShortenNumber(TOTAL)}</Typography>
+      <Typography variant="h3">Add Marksheet</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        New Users
+        Add marksheet of a specific user
       </Typography>
     </RootStyle>
   );

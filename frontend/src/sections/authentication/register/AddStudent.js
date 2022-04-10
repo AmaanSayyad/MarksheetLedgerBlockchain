@@ -17,7 +17,7 @@ export default function AddStudentForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
-  async function handlePostQuery(studentID, name) {
+  async function handlePostQuery( name,studentID) {
     var myParams = {
       studentID: studentID,
       studentName: name
@@ -29,18 +29,18 @@ export default function AddStudentForm() {
         console.log('response', response);
         navigate('/dashboard/app');
         console.log('response data :', response.data);
-          //Perform action based on response
+          // Perform action based on response
       })
       .catch(function (error) {
         console.log(error);
-        //Perform action based on error
+        // Perform action based on error
       });
   }
   async function addStudent() {
     try {
       setError('');
-      console.log('Inside addStudent onclick');
-      await handlePostQuery(formik.studentID, formik.studentName);
+      console.log('Inside addStudent onclick',formik);
+      await handlePostQuery(formik.values.name, formik.values.studentID);
     } catch {
       setError('Failed to choose values!');
     }

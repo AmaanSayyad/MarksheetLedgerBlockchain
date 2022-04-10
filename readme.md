@@ -30,30 +30,9 @@ Motivation uhhh! There is an entire sad story for us to make this project. My fr
 
 We take advantage of this features in the data points to train the machine learning model.
 
-
-## Folder structure
-
-    - readme.md
-    - requirements.txt
-    - gitignore
-    - strategies
-        - data_segmentation.md
-    - data_synthesizer
-        - data_creator.py
-        - utils.py
-        - data
-            - dataset.csv
-    - machine_learning
-        - trainer.py
-        - predictor.py
-        - model
-            - model.sav
-            - model_scaler.pkl
-
-
 ## Contribution
 
-    Made with love by 
+    Made with love by
     - Anchal Jain
     - Jigar Joshi
     - Sakshi Pandey

@@ -15,6 +15,7 @@ import Blog from './pages/Blog';
 import User from './pages/User';
 import NotFound from './pages/Page404';
 import ListMarksheet from './pages/ListMarksheet';
+import ViewMarksTable from './pages/ViewMarksTable';
 
 // ----------------------------------------------------------------------
 
@@ -33,6 +34,7 @@ export default function Router() {
         { path: 'addMarks', element: <AddMarks /> },
         { path: 'viewMarksheet', element: <ViewMarksheet /> },
         { path: 'listMarksheet', element: <ListMarksheet /> },
+        { path: 'viewMarksTable', element: <ViewMarksTable /> }
       ]
     },
     {

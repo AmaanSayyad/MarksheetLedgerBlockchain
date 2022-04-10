@@ -8,17 +8,46 @@ import { LoadingButton } from '@mui/lab';
 // component
 import Iconify from '../../../components/Iconify';
 
+import axios from '../../../axios';
+
 // ----------------------------------------------------------------------
 
 export default function AddStudentForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+
+  async function handlePostQuery(studentID, name) {
+    var myParams = {
+      studentID: studentID,
+      studentName: name
+    };
+    console.log('here', myParams);
+    axios
+      .post('addStudent', myParams)
+      .then(function (response) {
+        console.log('response', response);
+        navigate('/dashboard/app');
+        console.log('response data :', response.data);
+          //Perform action based on response
+      })
+      .catch(function (error) {
+        console.log(error);
+        //Perform action based on error
+      });
+  }
+  async function addStudent() {
+    try {
+      setError('');
+      console.log('Inside addStudent onclick');
+      await handlePostQuery(formik.studentID, formik.studentName);
+    } catch {
+      setError('Failed to choose values!');
+    }
+  }
 
   const RegisterSchema = Yup.object().shape({
-    name:Yup.string()
-      .min(2, 'Too Short!')
-      .max(50, 'Too Long!')
-      .required('Name required'),
+    name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Name required'),
     firstName: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
@@ -31,16 +60,17 @@ export default function AddStudentForm() {
 
   const formik = useFormik({
     initialValues: {
-      name:'',
+      name: '',
       firstName: '',
       lastName: '',
-      studentID:'',
+      studentID: '',
       email: '',
       password: ''
     },
     validationSchema: RegisterSchema,
     onSubmit: () => {
-      navigate('/dashboard', { replace: true });
+      addStudent()
+      // navigate('/dashboard', { replace: true });
     }
   });
 
@@ -67,8 +97,8 @@ export default function AddStudentForm() {
               helperText={touched.lastName && errors.lastName}
             /> */}
           </Stack>
- 
-       <TextField
+
+          <TextField
             fullWidth
             autoComplete="username"
             // type="email"
@@ -78,7 +108,7 @@ export default function AddStudentForm() {
             helperText={touched.studentID && errors.studentID}
           />
 
-         {/* <TextField
+          {/* <TextField
             fullWidth
             autoComplete="username"
             type="email"
@@ -113,6 +143,7 @@ export default function AddStudentForm() {
             type="submit"
             variant="contained"
             loading={isSubmitting}
+            onClick={addStudent}
           >
             Add Student
           </LoadingButton>

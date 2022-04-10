@@ -52,6 +52,16 @@ const sidebarConfig = [
     icon: getIcon('eva:person-add-fill')
   },
   {
+    title: 'list marksheet',
+    path: '/dashboard/listMarksheet',
+    icon: getIcon('eva:person-add-fill')
+  },
+  {
+    title: 'view marks',
+    path: '/dashboard/viewMarksTable',
+    icon: getIcon('eva:person-add-fill')
+  },
+  {
     title: 'add marks',
     path: '/dashboard/addMarks',
     icon: getIcon('eva:person-add-fill')

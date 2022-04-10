@@ -41,7 +41,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 export default function AddStudent() {
   return (
-    <RootStyle title="Register | Minimal-UI">
+    <RootStyle title="AddStudent | Minimal-UI">
       {/* <AuthLayout>
         Already have an account? &nbsp;
         <Link underline="none" variant="subtitle2" component={RouterLink} to="/login">

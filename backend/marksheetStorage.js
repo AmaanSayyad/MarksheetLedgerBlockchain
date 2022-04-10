@@ -5,9 +5,8 @@ var bodyParser = require('body-parser')
 var app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-const cors = require("cors");
-app.use(cors());
-
+const cors = require('cors')
+app.use(cors())
 
 var contractInitiator = require('./marksheetStorage')
 var instance = null
@@ -61,9 +60,7 @@ async function getStudentMarksheetsCount(instance, studentID) {
   return numberOfMarksheet
 }
 
-async function getTotalSubjectsInMarksheet(instance, studentID, marksheetID){
-  
-}
+async function getTotalSubjectsInMarksheet(instance, studentID, marksheetID) {}
 async function addMarksheet(
   instance,
   studentID,
@@ -171,19 +168,27 @@ app.post('/addMarksheet', async function (req, res) {
 
 app.post('/addMarksheetRow', async function (req, res) {
   console.log('Inside add marksheet row')
-  for (var i = 0; i < req.body.totalSubjects; i++) {
-    await addMarksheetRow(
-      instance,
-      req.body.studentID,
-      req.body.marksheetID,
-      i,
-      req.body.marksheetRows[i].subjectName,
-      req.body.marksheetRows[i].marksObtained,
-      req.body.marksheetRows[i].totalMarks,
-      req.body.marksheetRows[i].pass,
-    )
-    console.log('Marksheet row added')
-  }
+  await addMarksheetRow(
+    instance,
+    req.body.studentID,
+    req.body.marksheetID,
+    req.body.subjectNumber,
+    req.body.subjectName,
+    req.body.marksObtained,
+    req.body.totalMarks,
+    req.body.pass,
+  )
+  console.log('Marksheet row added')
+  res.send({
+    studentID: req.body.studentID,
+    studentID: req.body.studentID,
+    marksheetID: req.body.marksheetID,
+    subjectNumber: req.body.subjectNumber,
+    subjectName: req.body.subjectName,
+    marksObtained: req.body.marksObtained,
+    totalMarks: req.body.totalMarks,
+    pass: req.body.pass,
+  })
 })
 
 var server = app.listen(8081, async function () {

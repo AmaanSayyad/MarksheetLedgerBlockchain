@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import AddStudent from './pages/AddStudent';
 import AddMarksheet from './pages/AddMarksheet';
+import AddMarks from './pages/AddMarks';
+import ViewMarksheet from './pages/ViewMarksheet';
 import DashboardApp from './pages/DashboardApp';
 import Products from './pages/Products';
 import Blog from './pages/Blog';
@@ -27,6 +29,8 @@ export default function Router() {
         { path: 'blog', element: <Blog /> },
         {path: 'addStudent', element: <AddStudent />},
         {path: 'addMarksheet', element: <AddMarksheet />},
+        {path: 'addMarks', element: <AddMarks />},
+        {path: 'viewMarksheet', element: <ViewMarksheet />},
       ]
     },
     {

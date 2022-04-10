@@ -1,6 +1,6 @@
 // material
 import { alpha, styled } from '@mui/material/styles';
-import { Card, Typography } from '@mui/material';
+import { Card, Typography,CardActionArea } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
 //
@@ -39,6 +39,7 @@ const TOTAL = 1723315;
 export default function ViewMarksheet() {
   return (
     <RootStyle>
+      <CardActionArea href="../../dashboard/viewMarksheet/">
       <IconWrapperStyle>
         <Iconify icon="carbon:view-filled" width={24} height={24} />
       </IconWrapperStyle>
@@ -46,6 +47,7 @@ export default function ViewMarksheet() {
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         View marksheet of a specific user
       </Typography>
+      </CardActionArea>
     </RootStyle>
   );
 }

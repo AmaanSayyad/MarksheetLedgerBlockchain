@@ -23,6 +23,7 @@ export default function Router() {
         { path: 'app', element: <DashboardApp /> },
         { path: 'user', element: <User /> },
         { path: 'products', element: <Products /> },
+        { path: 'addStudent', element: <AddStudent /> },
         { path: 'blog', element: <Blog /> }
       ]
     },
@@ -33,7 +34,6 @@ export default function Router() {
         { path: '/', element: <Navigate to="/dashboard/app" /> },
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Register /> },
-        {path: 'addStudent', element: <AddStudent />},
         { path: '404', element: <NotFound /> },
         { path: '*', element: <Navigate to="/404" /> }
       ]

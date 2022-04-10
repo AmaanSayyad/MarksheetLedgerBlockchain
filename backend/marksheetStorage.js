@@ -1,0 +1,84 @@
+// This script requires that you have already deployed HelloWorld.sol with Truffle
+// Go back and do that if you haven't already
+var express = require('express')
+var bodyParser = require('body-parser')
+var app = express()
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+var contractInitiator = require('./marksheetStorage')
+var instance = null
+const privateKeyToAddress = require('@celo/utils/lib/address')
+  .privateKeyToAddress
+require('dotenv').config()
+
+// 1. Import web3 and contractkit
+const Web3 = require('web3')
+const ContractKit = require('@celo/contractkit')
+
+// 2. Init a new kit, connected to the alfajores testnet
+const web3 = new Web3('https://alfajores-forno.celo-testnet.org')
+const kit = ContractKit.newKitFromWeb3(web3)
+
+const MarksheetStorage = require('./build/contracts/MarksheetStorage.json')
+
+async function initContract() {
+  const networkId = await web3.eth.net.getId()
+  const deployedNetwork = MarksheetStorage.networks[networkId]
+  let instance = new kit.web3.eth.Contract(
+    MarksheetStorage.abi,
+    deployedNetwork && deployedNetwork.address,
+  )
+  return instance
+}
+
+async function getStudentName(instance, studentID) {
+  console.log('Get student name  is called')
+  let name = await instance.methods.getStudentName(studentID).call()
+  console.log(name)
+  return name
+}
+
+async function addStudent(instance, studentID, studentName) {
+  console.log('Add student is called')
+  kit.connection.addAccount(process.env.PRIVATE_KEY)
+  const address = privateKeyToAddress(process.env.PRIVATE_KEY)
+  let txObject = await instance.methods.addStudent(studentID, studentName)
+  let tx = await kit.sendTransactionObject(txObject, { from: address })
+  let receipt = await tx.waitReceipt()
+  console.log(receipt)
+}
+
+app.post('/getStudentName', async function (req, res) {
+  console.log('Get student name  is called', req.body)
+  let studentName = await instance.methods
+    .getStudentName(req.body.studentID)
+    .call()
+  console.log(studentName)
+  res.send({
+    studentName: studentName,
+  })
+})
+
+app.post('/addStudent', async function (req, res) {
+  console.log(process.env.PRIVATE_KEY)
+  var response = await addStudent(
+    instance,
+    req.body.studentID,
+    req.body.studentName,
+  )
+  console.log(response)
+  res.send({
+    studentID: req.body.studentID,
+  })
+})
+
+var server = app.listen(8081, async function () {
+  var host = server.address().address
+  var port = server.address().port
+  instance = await initContract()
+  console.log('Instance :   ', instance)
+  console.log('Example app listening at http://%s:%s', host, port)
+})
+
+module.exports = initContract

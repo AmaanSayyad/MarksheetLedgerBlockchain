@@ -7,7 +7,8 @@ import { Box, Card, Link, Container, Typography } from '@mui/material';
 import AuthLayout from '../layouts/AuthLayout';
 // components
 import Page from '../components/Page';
-import { AddStudentForm } from '../sections/authentication/register';
+import { AddMarksheetForm, ViewMarksheetForm , AddMarksForm} from '../sections/authentication/register';
+// import { ViewMarksheetForm } from '../sections/authentication/register';
 import AuthSocial from '../sections/authentication/AuthSocial';
 
 // ----------------------------------------------------------------------
@@ -39,9 +40,9 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-export default function AddStudent() {
+export default function AddMarksheet() {
   return (
-    <RootStyle title="AddStudent | Minimal-UI">
+    <RootStyle title="Register | Minimal-UI">
       {/* <AuthLayout>
         Already have an account? &nbsp;
         <Link underline="none" variant="subtitle2" component={RouterLink} to="/login">
@@ -51,7 +52,7 @@ export default function AddStudent() {
 
       <SectionStyle sx={{ display: { xs: 'none', md: 'flex' } }}>
         <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-          Manage the student's marksheets more effectively with MarksheetLedger
+         Add student's marksheets more effectively with MarksheetLedger
         </Typography>
         <img alt="register" src="/static/illustrations/illustration_register.png" />
       </SectionStyle>
@@ -60,7 +61,7 @@ export default function AddStudent() {
         <ContentStyle>
           <Box sx={{ mb: 5 }}>
             <Typography variant="h4" gutterBottom>
-              Add Student and maintain their marksheets.
+              View Marksheet for a student here.
             </Typography>
             {/* <Typography sx={{ color: 'text.secondary' }}>
               Free forever. No credit card needed.
@@ -69,19 +70,7 @@ export default function AddStudent() {
 
           {/* <AuthSocial /> */}
 
-          <AddStudentForm />
-
-          <Typography variant="body2" align="center" sx={{ color: 'text.secondary', mt: 3 }}>
-            By registering, I agree to MarksheetLedger's
-            <Link underline="always" color="textPrimary">
-              Terms of Service
-            </Link>
-            &nbsp;and&nbsp;
-            <Link underline="always" color="textPrimary">
-              Privacy Policy
-            </Link>
-            .
-          </Typography>
+          <ViewMarksheetForm />
 
           {/* <Typography
             variant="subtitle2"

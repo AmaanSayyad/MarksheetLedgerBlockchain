@@ -1,6 +1,6 @@
 // material
 import { alpha, styled } from '@mui/material/styles';
-import { Card, Typography } from '@mui/material';
+import { Card, Typography,CardActionArea } from '@mui/material';
 // utils
 import { fShortenNumber } from '../../../utils/formatNumber';
 // component
@@ -39,6 +39,7 @@ const TOTAL = 1352831;
 export default function AddMarksheet() {
   return (
     <RootStyle>
+      <CardActionArea href="../../dashboard/addMarksheet/">
       <IconWrapperStyle>
         <Iconify icon="fluent:add-12-filled" width={24} height={24} />
       </IconWrapperStyle>
@@ -46,6 +47,7 @@ export default function AddMarksheet() {
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         Add marksheet of a specific user
       </Typography>
+      </CardActionArea>
     </RootStyle>
   );
 }

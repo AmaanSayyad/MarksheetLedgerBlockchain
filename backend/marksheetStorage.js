@@ -1,6 +1,13 @@
 // This script requires that you have already deployed HelloWorld.sol with Truffle
 // Go back and do that if you haven't already
+var express = require('express')
+var bodyParser = require('body-parser')
+var app = express()
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
+var contractInitiator = require('./marksheetStorage')
+var instance = null
 const privateKeyToAddress = require('@celo/utils/lib/address')
   .privateKeyToAddress
 require('dotenv').config()
@@ -13,12 +20,9 @@ const ContractKit = require('@celo/contractkit')
 const web3 = new Web3('https://alfajores-forno.celo-testnet.org')
 const kit = ContractKit.newKitFromWeb3(web3)
 
-// import HelloWorld info
 const MarksheetStorage = require('./build/contracts/MarksheetStorage.json')
 
-// Initialize a new Contract interface
 async function initContract() {
-  // Check the Celo network ID
   const networkId = await web3.eth.net.getId()
   const deployedNetwork = MarksheetStorage.networks[networkId]
   let instance = new kit.web3.eth.Contract(
@@ -26,35 +30,55 @@ async function initContract() {
     deployedNetwork && deployedNetwork.address,
   )
   return instance
-  // getStudentName(instance)
 }
 
-// Read the 'name' stored in the HelloWorld.sol contract
-async function getStudentName(instance) {
+async function getStudentName(instance, studentID) {
   console.log('Get student name  is called')
-  let name = await instance.methods.getStudentName(1811018).call()
+  let name = await instance.methods.getStudentName(studentID).call()
   console.log(name)
+  return name
 }
 
-// Set the 'name' stored in the HelloWorld.sol contract
-async function addStudent(instance, newName) {
+async function addStudent(instance, studentID, studentName) {
   console.log('Add student is called')
-  // Add your account to ContractKit to sign transactions
-  // This account must have a CELO balance to pay tx fees, get some https://celo.org/build/faucet
   kit.connection.addAccount(process.env.PRIVATE_KEY)
   const address = privateKeyToAddress(process.env.PRIVATE_KEY)
-
-  // Encode the transaction to HelloWorld.sol according to the ABI
-  let txObject = await instance.methods.addStudent(1811018, 'Jigar')
-
-  // Send the transaction
+  let txObject = await instance.methods.addStudent(studentID, studentName)
   let tx = await kit.sendTransactionObject(txObject, { from: address })
-
   let receipt = await tx.waitReceipt()
   console.log(receipt)
 }
 
-// initContract()
+app.post('/getStudentName', async function (req, res) {
+  console.log('Get student name  is called', req.body)
+  let studentName = await instance.methods
+    .getStudentName(req.body.studentID)
+    .call()
+  console.log(studentName)
+  res.send({
+    studentName: studentName,
+  })
+})
 
+app.post('/addStudent', async function (req, res) {
+  console.log(process.env.PRIVATE_KEY)
+  var response = await addStudent(
+    instance,
+    req.body.studentID,
+    req.body.studentName,
+  )
+  console.log(response)
+  res.send({
+    studentID: req.body.studentID,
+  })
+})
+
+var server = app.listen(8081, async function () {
+  var host = server.address().address
+  var port = server.address().port
+  instance = await initContract()
+  console.log('Instance :   ', instance)
+  console.log('Example app listening at http://%s:%s', host, port)
+})
 
 module.exports = initContract

@@ -51,11 +51,11 @@ const sidebarConfig = [
     path: '/dashboard/viewMarksheet',
     icon: getIcon('eva:file-text-fill')
   },
-  {
-    title: 'list marksheet',
-    path: '/dashboard/listMarksheet',
-    icon: getIcon('eva:person-add-fill')
-  },
+  // {
+  //   title: 'list marksheet',
+  //   path: '/dashboard/listMarksheet',
+  //   icon: getIcon('eva:person-add-fill')
+  // },
   {
     title: 'view marks',
     path: '/dashboard/viewMarksTable',

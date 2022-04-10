@@ -135,7 +135,7 @@ export default function ViewMarksTable() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            List of all Marksheets
+            View Marks
           </Typography>
           {/* <Button
             variant="contained"

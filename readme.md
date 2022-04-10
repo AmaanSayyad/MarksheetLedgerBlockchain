@@ -34,6 +34,15 @@ We take advantage of this features in the data points to train the machine learn
 # Scalability and Useability
 
 This model is based on organizations paying the cost for maintainance of blockchain. All organizations will be pushed to use this system and students enrolling them would demand this system and it would make everyones life easy. To be a part of this system, organizations will have to maintain tens of nodes and hence more the organizations, stronger the blockchain. Every organization will start recommending this system as it would easen and automate the student application review process. So this system is scalable and maintainable.
+
+# Screenshots
+
+![](https://github.com/anchaljain007/MarksheetLedgerBlockchain/blob/master/screenshots/dashboard.jpg)
+![](https://github.com/anchaljain007/MarksheetLedgerBlockchain/blob/master/screenshots/addStudent.jpg)
+![](https://github.com/anchaljain007/MarksheetLedgerBlockchain/blob/master/screenshots/addMarksheet.jpg)
+![](https://github.com/anchaljain007/MarksheetLedgerBlockchain/blob/master/screenshots/addMarks.jpg)
+![](https://github.com/anchaljain007/MarksheetLedgerBlockchain/blob/master/screenshots/viewMarksheet.jpg)
+
 ## Contribution
 
     Made with love by

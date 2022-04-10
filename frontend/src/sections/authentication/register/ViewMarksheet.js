@@ -8,12 +8,43 @@ import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // component
 import Iconify from '../../../components/Iconify';
+import axios from '../../../axios';
 
 // ----------------------------------------------------------------------
 
 export default function ViewMarksheetForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+
+  async function handlePostQuery(studentID) {
+    var myParams = {
+      studentID: studentID,
+    };
+    console.log('here', myParams);
+    axios
+      .post('addStudent', myParams)
+      .then(function (response) {
+        console.log('response', response);
+        navigate('/dashboard/app');
+        console.log('response data :', response.data);
+        // Perform action based on response
+      })
+      .catch(function (error) {
+        console.log(error);
+        // Perform action based on error
+      });
+  }
+  async function addStudent() {
+    try {
+      setError('');
+      console.log('Inside addStudent onclick');
+      await handlePostQuery(formik.values.studentID);
+    } catch {
+      setError('Failed to choose values!');
+    }
+  }
+
 
   const RegisterSchema = Yup.object().shape({
     name:Yup.string()
@@ -86,6 +117,7 @@ export default function ViewMarksheetForm() {
             type="submit"
             variant="contained"
             loading={isSubmitting}
+            onClick={addStudent}
           >
             View Marksheet
           </LoadingButton>

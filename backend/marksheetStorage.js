@@ -58,6 +58,9 @@ async function getStudentMarksheetsCount(instance, studentID) {
   return numberOfMarksheet
 }
 
+async function getTotalSubjectsInMarksheet(instance, studentID, marksheetID){
+  
+}
 async function addMarksheet(
   instance,
   studentID,
@@ -156,12 +159,20 @@ app.post('/addMarksheet', async function (req, res) {
     req.body.marksheetTitle,
     req.body.totalSubjects,
   )
-  console.log('Marksheet added')
+  res.send({
+    studentID: req.body.studentID,
+    marksheetID: marksheetID,
+    totalSubjects: req.body.totalSubjects,
+  })
+})
+
+app.post('/addMarksheetRow', async function (req, res) {
+  console.log('Inside add marksheet row')
   for (var i = 0; i < req.body.totalSubjects; i++) {
     await addMarksheetRow(
       instance,
       req.body.studentID,
-      marksheetID,
+      req.body.marksheetID,
       i,
       req.body.marksheetRows[i].subjectName,
       req.body.marksheetRows[i].marksObtained,
@@ -170,10 +181,6 @@ app.post('/addMarksheet', async function (req, res) {
     )
     console.log('Marksheet row added')
   }
-  res.send({
-    studentID: req.body.studentID,
-    marksheetID: marksheetID,
-  })
 })
 
 var server = app.listen(8081, async function () {

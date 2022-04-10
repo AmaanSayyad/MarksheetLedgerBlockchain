@@ -47,6 +47,11 @@ const sidebarConfig = [
     icon: getIcon('eva:person-add-fill')
   },
   {
+    title: 'add marks',
+    path: '/dashboard/addMarks',
+    icon: getIcon('eva:person-add-fill')
+  },
+  {
     title: 'view marksheet',
     path: '/dashboard/viewMarksheet',
     icon: getIcon('eva:file-text-fill')
@@ -59,11 +64,6 @@ const sidebarConfig = [
   {
     title: 'view marks',
     path: '/dashboard/viewMarksTable',
-    icon: getIcon('eva:person-add-fill')
-  },
-  {
-    title: 'add marks',
-    path: '/dashboard/addMarks',
     icon: getIcon('eva:person-add-fill')
   },
   {

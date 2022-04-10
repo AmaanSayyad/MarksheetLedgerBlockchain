@@ -26,7 +26,7 @@ import Iconify from '../components/Iconify';
 import SearchNotFound from '../components/SearchNotFound';
 import { UserListHead, UserListToolbar, UserMoreMenu } from '../sections/@dashboard/user';
 //
-import USERLIST from '../_mocks_/user';
+import USERLIST from '../_mocks_/marks';
 
 // ----------------------------------------------------------------------
 
@@ -198,7 +198,7 @@ export default function ViewMarksTable() {
                           </TableCell>
                           <TableCell align="left">{company}</TableCell>
                           <TableCell align="left">{role}</TableCell>
-                          <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                          <TableCell align="left">{isVerified}</TableCell>
                           <TableCell align="left">
                             <Label
                               variant="ghost"

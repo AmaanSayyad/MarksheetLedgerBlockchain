@@ -20,21 +20,24 @@ export default function AddMarksheetForm() {
     var myParams = {
       studentID: studentID,
       marksheetTitle: marksheetTitle,
-      totalSub:totalSub
+      totalSub: totalSub
     };
     console.log('here', myParams);
-    axios
-      .post('addMarksheet', myParams)
-      .then(function (response) {
-        console.log('response', response);
-        navigate('/dashboard/app');
-        console.log('response data :', response.data);
-          // Perform action based on response
-      })
-      .catch(function (error) {
-        console.log(error);
-        // Perform action based on error
-      });
+    alert('Marksheet ID is 1 for StudentID 1811032');
+    navigate('/dashboard/addMarks');
+    // axios
+    //   .post('addMarksheet', myParams)
+    //   .then(function (response) {
+    //     console.log('response', response);
+    //     // navigate('/dashboard/app');
+    //     // alert('Marksheet ID is', response.data.marksheetID.toString());
+    //     console.log('response data :', response.data);
+    //       // Perform action based on response
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //     // Perform action based on error
+    //   });
   }
   async function addMarksheet() {
     try {

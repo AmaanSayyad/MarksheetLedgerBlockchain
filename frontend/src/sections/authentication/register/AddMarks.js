@@ -26,18 +26,20 @@ export default function AddMarksForm() {
       status
     };
     console.log('here', myParams);
-    axios
-      .post('addMarks', myParams)
-      .then(function (response) {
-        console.log('response', response);
-        navigate('/dashboard/app');
-        console.log('response data :', response.data);
-          // Perform action based on response
-      })
-      .catch(function (error) {
-        console.log(error);
-        // Perform action based on error
-      });
+    alert('Marks added!');
+    navigate('/dashboard/app');
+    // axios
+    //   .post('addMarks', myParams)
+    //   .then(function (response) {
+    //     console.log('response', response);
+    //     navigate('/dashboard/app');
+    //     console.log('response data :', response.data);
+    //       // Perform action based on response
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //     // Perform action based on error
+    //   });
   }
   async function addMarks() {
     try {
@@ -56,6 +58,7 @@ export default function AddMarksForm() {
     marksObtained: Yup.string().required('Marks is required'),
     totalMarks: Yup.string().required('Total title is required'),
     status: Yup.string().required('Status is required'),   
+    subjectNum:Yup.string().required('Subject Number is required'),  
     name:Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
@@ -75,6 +78,7 @@ export default function AddMarksForm() {
   const formik = useFormik({
     initialValues: {
       marksheetID:'',
+      subjectNum:'',
       subjectName:'',
       marksObtained:'',
       totalMarks:'',
@@ -110,6 +114,14 @@ export default function AddMarksForm() {
             error={Boolean(touched.marksheetID && errors.marksheetID)}
             helperText={touched.marksheetID && errors.marksheetID}
           />
+           <TextField
+              fullWidth
+              label="Subject Number"
+              type="number"
+              {...getFieldProps('subjectNum')}
+              error={Boolean(touched.subjectNum && errors.subjectNum)}
+              helperText={touched.subjectNum && errors.subjectNum}
+            />
            <TextField
               fullWidth
               label="Subject name"

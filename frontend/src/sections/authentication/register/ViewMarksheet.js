@@ -22,18 +22,19 @@ export default function ViewMarksheetForm() {
       studentID: studentID,
     };
     console.log('here', myParams);
-    axios
-      .post('addStudent', myParams)
-      .then(function (response) {
-        console.log('response', response);
-        navigate('/dashboard/app');
-        console.log('response data :', response.data);
-        // Perform action based on response
-      })
-      .catch(function (error) {
-        console.log(error);
-        // Perform action based on error
-      });
+    navigate('/dashboard/listMarksheet');
+    // axios
+    //   .post('addStudent', myParams)
+    //   .then(function (response) {
+    //     console.log('response', response);
+    //     navigate('/dashboard/app');
+    //     console.log('response data :', response.data);
+    //     // Perform action based on response
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //     // Perform action based on error
+    //   });
   }
   async function addStudent() {
     try {

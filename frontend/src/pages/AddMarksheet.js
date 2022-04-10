@@ -42,7 +42,7 @@ const ContentStyle = styled('div')(({ theme }) => ({
 
 export default function AddMarksheet() {
   return (
-    <RootStyle title="Register | Minimal-UI">
+    <RootStyle title="Add Marksheet | Minimal-UI">
       {/* <AuthLayout>
         Already have an account? &nbsp;
         <Link underline="none" variant="subtitle2" component={RouterLink} to="/login">

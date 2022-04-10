@@ -1,7 +1,7 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // material
 import {
   Card,
@@ -71,6 +71,7 @@ function applySortFilter(array, comparator, query) {
 }
 
 export default function ListMarksheet() {
+  const navigate = useNavigate();
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState('asc');
   const [selected, setSelected] = useState([]);
@@ -174,10 +175,12 @@ export default function ListMarksheet() {
                       const isItemSelected = selected.indexOf(name) !== -1;
 
                       return (
+              
                         <TableRow
                           hover
                           key={id}
                           tabIndex={-1}
+                          onClick={() => { navigate('/dashboard/viewMarksTable')}}
                           // role="checkbox"
                           // selected={isItemSelected}
                           // aria-checked={isItemSelected}
@@ -198,7 +201,7 @@ export default function ListMarksheet() {
                           </TableCell>
                           <TableCell align="left">{company}</TableCell>
                           <TableCell align="left">{role}</TableCell>
-                          <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                          <TableCell align="left">{isVerified}</TableCell>
                           <TableCell align="left">
                             <Label
                               variant="ghost"
@@ -212,6 +215,7 @@ export default function ListMarksheet() {
                             <UserMoreMenu />
                           </TableCell> */}
                         </TableRow>
+                
                       );
                     })}
                   {emptyRows > 0 && (

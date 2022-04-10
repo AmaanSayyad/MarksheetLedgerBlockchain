@@ -30,6 +30,10 @@ Motivation uhhh! There is an entire sad story for us to make this project. My fr
 
 We take advantage of this features in the data points to train the machine learning model.
 
+
+# Scalability and Useability
+
+This model is based on organizations paying the cost for maintainance of blockchain. All organizations will be pushed to use this system and students enrolling them would demand this system and it would make everyones life easy. To be a part of this system, organizations will have to maintain tens of nodes and hence more the organizations, stronger the blockchain. Every organization will start recommending this system as it would easen and automate the student application review process. So this system is scalable and maintainable.
 ## Contribution
 
     Made with love by

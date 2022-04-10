@@ -47,7 +47,8 @@ This model is based on organizations paying the cost for maintainance of blockch
 
 ## Contribution
 
-<h3 align="center"><b>Developed with :heart: by <a href="https://github.com/anchaljain007/">Sakshi</a></b></h1> <a href="https://github.com/JigarJoshi04/">Sakshi</a></b></h1> <a href="https://github.com/sakship31/">Sakshi</a></b></h1>
+<h3 align="center"><b>Developed with :heart: by <a href="https://github.com/anchaljain007/">Anchal Jain</a>, <a href="https://github.com/JigarJoshi04">Jigar Joshi</a>,<a href="https://github.com/sakship31">Sakshi Pandey</a></b></h1>
+
 
 Referred:
 https://docs.celo.org/developer-guide/start/hello-contract-remote-node

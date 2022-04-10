@@ -44,12 +44,12 @@ const sidebarConfig = [
   {
     title: 'add marksheet',
     path: '/dashboard/addMarksheet',
-    icon: getIcon('eva:person-add-fill')
+    icon: getIcon('ant-design:file-add-filled')
   },
   {
     title: 'add marks',
     path: '/dashboard/addMarks',
-    icon: getIcon('eva:person-add-fill')
+    icon: getIcon('carbon:add-filled')
   },
   {
     title: 'view marksheet',
@@ -66,11 +66,11 @@ const sidebarConfig = [
   //   path: '/dashboard/viewMarksTable',
   //   icon: getIcon('eva:person-add-fill')
   // },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: getIcon('eva:alert-triangle-fill')
-  }
+  // {
+  //   title: 'Not found',
+  //   path: '/404',
+  //   icon: getIcon('eva:alert-triangle-fill')
+  // }
 ];
 
 export default sidebarConfig;

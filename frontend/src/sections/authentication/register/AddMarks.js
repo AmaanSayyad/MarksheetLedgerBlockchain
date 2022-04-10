@@ -8,12 +8,47 @@ import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // component
 import Iconify from '../../../components/Iconify';
+import axios from '../../../axios';
 
 // ----------------------------------------------------------------------
 
 export default function AddMarksForm() {
-  const navigate = useNavigate();
+   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+
+  async function handlePostQuery(marksheetID,subjectName, marksObtained,totalMarks,status) {
+    var myParams = {
+      marksheetID,
+      subjectName, 
+      marksObtained,
+      totalMarks,
+      status
+    };
+    console.log('here', myParams);
+    axios
+      .post('addMarks', myParams)
+      .then(function (response) {
+        console.log('response', response);
+        navigate('/dashboard/app');
+        console.log('response data :', response.data);
+          // Perform action based on response
+      })
+      .catch(function (error) {
+        console.log(error);
+        // Perform action based on error
+      });
+  }
+  async function addMarks() {
+    try {
+      setError('');
+      console.log('Inside addStudent onclick',formik);
+      await handlePostQuery(formik.values.marksheetID, formik.values.subjectName, formik.values.marksObtained,formik.values.totalMarks,formik.values.status);
+    } catch {
+      setError('Failed to choose values!');
+    }
+  }
+
 
   const RegisterSchema = Yup.object().shape({
     marksheetID:Yup.string().required('marksheet id is required'),
@@ -92,18 +127,18 @@ export default function AddMarksForm() {
             />
            <TextField
               fullWidth
-              label="Total"
-              {...getFieldProps('status')}
-              error={Boolean(touched.status && errors.status)}
-              helperText={touched.status && errors.status}
+              label="Total Marks"
+              {...getFieldProps('totalMarks')}
+              error={Boolean(touched.totalMarks && errors.totalMarks)}
+              helperText={touched.totalMarks && errors.totalMarks}
             />
            <TextField
               fullWidth
               label="Status (Pass/Fail)"
-              type="number"
-              {...getFieldProps('totalMarks')}
-              error={Boolean(touched.totalMarks && errors.totalMarks)}
-              helperText={touched.totalMarks && errors.totalMarks}
+    
+              {...getFieldProps('status')}
+              error={Boolean(touched.status && errors.status)}
+              helperText={touched.status && errors.status}
             />
           <LoadingButton
             fullWidth
@@ -111,6 +146,7 @@ export default function AddMarksForm() {
             type="submit"
             variant="contained"
             loading={isSubmitting}
+            onClick={addMarks}
           >
             Add marks in the marksheet
           </LoadingButton>

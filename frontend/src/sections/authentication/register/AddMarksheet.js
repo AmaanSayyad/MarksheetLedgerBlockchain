@@ -8,12 +8,43 @@ import { Stack, TextField, IconButton, InputAdornment } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // component
 import Iconify from '../../../components/Iconify';
-
+import axios from '../../../axios';
 // ----------------------------------------------------------------------
 
 export default function AddMarksheetForm() {
-  const navigate = useNavigate();
+   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+
+  async function handlePostQuery(studentID,marksheetTitle,totalSub) {
+    var myParams = {
+      studentID: studentID,
+      marksheetTitle: marksheetTitle,
+      totalSub:totalSub
+    };
+    console.log('here', myParams);
+    axios
+      .post('addMarksheet', myParams)
+      .then(function (response) {
+        console.log('response', response);
+        navigate('/dashboard/app');
+        console.log('response data :', response.data);
+          // Perform action based on response
+      })
+      .catch(function (error) {
+        console.log(error);
+        // Perform action based on error
+      });
+  }
+  async function addMarksheet() {
+    try {
+      setError('');
+      console.log('Inside addStudent onclick',formik);
+      await handlePostQuery(formik.values.studentID, formik.values.marksheetTitle, formik.values.totalSub);
+    } catch {
+      setError('Failed to choose values!');
+    }
+  }
 
   const RegisterSchema = Yup.object().shape({
     name:Yup.string()
@@ -86,6 +117,7 @@ export default function AddMarksheetForm() {
             type="submit"
             variant="contained"
             loading={isSubmitting}
+            onClick={addMarksheet}
           >
             Add Marksheet
           </LoadingButton>

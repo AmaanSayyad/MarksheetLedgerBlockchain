@@ -49,6 +49,63 @@ async function addStudent(instance, studentID, studentName) {
   console.log(receipt)
 }
 
+async function getStudentMarksheetsCount(instance, studentID) {
+  console.log('Get student name  is called')
+  let numberOfMarksheet = await instance.methods
+    .getStudentMarksheetsCount(studentID)
+    .call()
+  console.log(numberOfMarksheet)
+  return numberOfMarksheet
+}
+
+async function addMarksheet(
+  instance,
+  studentID,
+  marksheetTitle,
+  totalSubjects,
+) {
+  console.log('Add marksheet is called')
+  kit.connection.addAccount(process.env.PRIVATE_KEY)
+  const address = privateKeyToAddress(process.env.PRIVATE_KEY)
+  let txObject = await instance.methods.addMarksheet(
+    studentID,
+    marksheetTitle,
+    totalSubjects,
+  )
+  console.log(txObject)
+  let tx = await kit.sendTransactionObject(txObject, { from: address })
+  console.log(tx)
+  let receipt = await tx.waitReceipt()
+  console.log(receipt)
+}
+
+async function addMarksheetRow(
+  instance,
+  studentID,
+  marksheetID,
+  marksheetRowID,
+  subjectName,
+  marksObtained,
+  totalMarks,
+  pass,
+) {
+  console.log('Add marksheet row is called')
+  kit.connection.addAccount(process.env.PRIVATE_KEY)
+  const address = privateKeyToAddress(process.env.PRIVATE_KEY)
+  let txObject = await instance.methods.addMarksheetRow(
+    studentID,
+    marksheetID,
+    marksheetRowID,
+    subjectName,
+    marksObtained,
+    totalMarks,
+    pass,
+  )
+  let tx = await kit.sendTransactionObject(txObject, { from: address })
+  let receipt = await tx.waitReceipt()
+  console.log(receipt)
+}
+
 app.post('/getStudentName', async function (req, res) {
   console.log('Get student name  is called', req.body)
   let studentName = await instance.methods
@@ -70,6 +127,52 @@ app.post('/addStudent', async function (req, res) {
   console.log(response)
   res.send({
     studentID: req.body.studentID,
+  })
+})
+
+app.post('/getStudentMarksheetsCount', async function (req, res) {
+  console.log('Inside get students marksheet count')
+  let numberOfMarksheet = await getStudentMarksheetsCount(
+    instance,
+    req.body.studentID,
+  )
+  console.log(numberOfMarksheet)
+  res.send({
+    studentID: req.body.studentID,
+    numberOfMarksheet: numberOfMarksheet,
+  })
+})
+
+app.post('/addMarksheet', async function (req, res) {
+  console.log('Inside add marksheet')
+  let marksheetID = await getStudentMarksheetsCount(
+    instance,
+    req.body.studentID,
+  )
+  console.log('MarksheetID  :  ', marksheetID)
+  await addMarksheet(
+    instance,
+    req.body.studentID,
+    req.body.marksheetTitle,
+    req.body.totalSubjects,
+  )
+  console.log('Marksheet added')
+  for (var i = 0; i < req.body.totalSubjects; i++) {
+    await addMarksheetRow(
+      instance,
+      req.body.studentID,
+      marksheetID,
+      i,
+      req.body.marksheetRows[i].subjectName,
+      req.body.marksheetRows[i].marksObtained,
+      req.body.marksheetRows[i].totalMarks,
+      req.body.marksheetRows[i].pass,
+    )
+    console.log('Marksheet row added')
+  }
+  res.send({
+    studentID: req.body.studentID,
+    marksheetID: marksheetID,
   })
 })
 

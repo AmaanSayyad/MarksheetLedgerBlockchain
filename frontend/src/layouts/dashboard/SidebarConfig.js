@@ -61,11 +61,11 @@ const sidebarConfig = [
   //   path: '/dashboard/listMarksheet',
   //   icon: getIcon('eva:person-add-fill')
   // },
-  {
-    title: 'view marks',
-    path: '/dashboard/viewMarksTable',
-    icon: getIcon('eva:person-add-fill')
-  },
+  // {
+  //   title: 'view marks',
+  //   path: '/dashboard/viewMarksTable',
+  //   icon: getIcon('eva:person-add-fill')
+  // },
   {
     title: 'Not found',
     path: '/404',

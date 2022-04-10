@@ -5,7 +5,7 @@ import { mockImgAvatar } from '../utils/mockImages';
 
 // ----------------------------------------------------------------------
 
-const users = [...Array(1)].map((_, index) => ({
+const users = [...Array(2)].map((_, index) => ({
   id: faker.datatype.uuid(),
   avatarUrl: mockImgAvatar(index + 1),
   // name: sample([
@@ -13,13 +13,16 @@ const users = [...Array(1)].map((_, index) => ({
   //   "90/100"
   // ]),
   company: sample([
-    "SSC",
+    "Maths",
+    "English"
   ]),
   isVerified:sample([
     90,
+    90
   ]),
   status: sample(['passed']),
   role: sample([
+    "90/100",
     "90/100"
   ])
 }));

@@ -24,6 +24,7 @@ export default function AddMarksheetForm() {
     };
     console.log('here', myParams);
     alert('Marksheet ID is 1 for StudentID 1811032');
+    navigate('/dashboard/addMarks');
     // axios
     //   .post('addMarksheet', myParams)
     //   .then(function (response) {

@@ -198,7 +198,7 @@ export default function ListMarksheet() {
                           </TableCell>
                           <TableCell align="left">{company}</TableCell>
                           <TableCell align="left">{role}</TableCell>
-                          <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
+                          <TableCell align="left">{isVerified}</TableCell>
                           <TableCell align="left">
                             <Label
                               variant="ghost"

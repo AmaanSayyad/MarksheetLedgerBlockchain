@@ -39,7 +39,7 @@ const TOTAL = 714000;
 export default function AddStudent() {
   return (
     <RootStyle>
-      <CardActionArea href="../../addStudent/">
+      <CardActionArea href="../../dashboard/addStudent/">
         <IconWrapperStyle>
           <Iconify icon="ant-design:usergroup-add-outlined" width={24} height={24} />
         </IconWrapperStyle>

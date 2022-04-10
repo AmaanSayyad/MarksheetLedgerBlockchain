@@ -61,7 +61,7 @@ export default function AddMarksheet() {
         <ContentStyle>
           <Box sx={{ mb: 5 }}>
             <Typography variant="h4" gutterBottom>
-              Add Marksheet for a student here.
+              Add Marks for the marksheet here.
             </Typography>
             {/* <Typography sx={{ color: 'text.secondary' }}>
               Free forever. No credit card needed.

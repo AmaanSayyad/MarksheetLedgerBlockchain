@@ -27,14 +27,15 @@ export default function AddMarksheetForm() {
       .post('addMarksheet', myParams)
       .then(function (response) {
         console.log('response', response);
-        navigate('/dashboard/app');
+        // navigate('/dashboard/app');
+        // alert('Marksheet ID is', response.data.marksheetID.toString());
         console.log('response data :', response.data);
           // Perform action based on response
       })
-      .catch(function (error) {
-        console.log(error);
-        // Perform action based on error
-      });
+      // .catch(function (error) {
+      //   console.log(error);
+      //   // Perform action based on error
+      // });
   }
   async function addMarksheet() {
     try {

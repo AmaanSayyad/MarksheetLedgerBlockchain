@@ -78,10 +78,13 @@ async function addMarksheet(
     marksheetTitle,
     totalSubjects,
   )
+  console.log('txobject')
   console.log(txObject)
   let tx = await kit.sendTransactionObject(txObject, { from: address })
+  console.log('added tx')
   console.log(tx)
   let receipt = await tx.waitReceipt()
+  console.log('Receipt')
   console.log(receipt)
 }
 
@@ -162,6 +165,7 @@ app.post('/addMarksheet', async function (req, res) {
     req.body.marksheetTitle,
     req.body.totalSubjects,
   )
+  console.log("res sending", req.body.studentID, req.body.marksheetTitle);
   res.send({
     studentID: req.body.studentID,
     marksheetID: marksheetID,

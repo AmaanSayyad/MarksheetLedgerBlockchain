@@ -47,6 +47,16 @@ const sidebarConfig = [
     icon: getIcon('eva:person-add-fill')
   },
   {
+    title: 'view marksheet',
+    path: '/dashboard/viewMarksheet',
+    icon: getIcon('eva:person-add-fill')
+  },
+  {
+    title: 'add marks',
+    path: '/dashboard/addMarks',
+    icon: getIcon('eva:person-add-fill')
+  },
+  {
     title: 'Not found',
     path: '/404',
     icon: getIcon('eva:alert-triangle-fill')

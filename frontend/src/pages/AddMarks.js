@@ -70,7 +70,7 @@ export default function AddMarksheet() {
 
           {/* <AuthSocial /> */}
 
-          <AddMarksheetForm />
+          <AddMarksForm />
 
           {/* <Typography
             variant="subtitle2"
